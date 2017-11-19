@@ -1,7 +1,13 @@
-apply plugin: 'java'
-apply plugin: 'application'
+plugins {
+  id 'java'
+  id 'application'
+  id 'com.github.johnrengelman.shadow' version '2.0.1'
+}
 
 mainClassName = 'ohtu.Main'
+
+
+
 
 jar {
     manifest {
@@ -9,9 +15,15 @@ jar {
     }
 }
 
+
+
 repositories {
     mavenCentral()
 }
+
+
+
+
 
 dependencies {
     compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.2.1'
