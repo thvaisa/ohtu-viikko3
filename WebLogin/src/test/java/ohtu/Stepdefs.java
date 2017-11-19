@@ -138,6 +138,45 @@ public class Stepdefs {
     }
     
     
+    @Given("^user with username \"([^\"]*)\" with password \"([^\"]*)\" is successfully created$")
+    public void user_with_username_with_password_is_successfully_created(String arg1, String arg2) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        driver.get(baseUrl);
+        SelectNewAccount(); 
+        createAccount(arg1, arg2, arg2);
+        driver.get(baseUrl);
+    }
+
+    @Then("^user gets in$")
+    public void user_gets_in() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        pageHasContent("Ohtu Application main page");
+    }
+
+    @Given("^user with username \"([^\"]*)\" and password \"([^\"]*)\" is tried to be created$")
+    public void user_with_username_and_password_is_tried_to_be_created(String arg1, String arg2) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        driver.get(baseUrl);
+        SelectNewAccount(); 
+        createAccount(arg1, arg2, arg2);
+        driver.get(baseUrl);
+    }
+
+    @When("^try login with username \"([^\"]*)\" and password \"([^\"]*)\"$")
+    public void try_login_with_username_and_password(String arg1, String arg2) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        logInWith(arg1, arg2);
+    }
+
+    @Then("^user does not get in$")
+    public void user_does_not_get_in() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        pageHasContent("invalid username or password");
+    }
+
+
+    
+    
     
     
     private void logInWith(String username, String password) {
