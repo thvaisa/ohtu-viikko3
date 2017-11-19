@@ -35,7 +35,7 @@ public class Submission {
         return exercises.length;
     }
     
-    private String exercisesToString(){
+    public String exercisesToString(){
         String str="";
         for(int i=0;i<exercises.length;++i){
             str=str+" "+exercises[i];
@@ -44,11 +44,10 @@ public class Submission {
     }
     
     
-    
+
     @Override
     public String toString() {
-        return "viikko "+week+": tehtyjä tehtäviä yhteensä: "+getSum()+", aikaa"
-                + " kului " + hours +" tuntia, tehdyt tehtävät"+exercisesToString();
-    }
+        return "";
+   }
     
 }
