@@ -20,6 +20,7 @@ public class ServerRule extends ExternalResource {
         dao.add(new User("jukka", "akkuj"));
         Main.setDao(dao);
         Main.main(null);
+        System.setProperty("webdriver.chrome.driver", "/home/rokka/Courses/Exercises/Ohjelmistotuotanto/ChromeDriver/chromedriver"); 
     }
 
     @Override
