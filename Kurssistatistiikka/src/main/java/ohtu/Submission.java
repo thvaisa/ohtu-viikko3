@@ -32,11 +32,7 @@ public class Submission {
     }
 
     public int getSum(){
-        int sum=0;
-        for(int i=0;i<exercises.length;++i){
-            sum=exercises[i];
-        }
-        return sum;
+        return exercises.length;
     }
     
     private String exercisesToString(){
