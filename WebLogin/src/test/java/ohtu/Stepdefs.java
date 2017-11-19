@@ -34,6 +34,15 @@ public class Stepdefs {
         element.submit();  
     }
 
+    @When("^username \"([^\"]*)\" and password \"([^\"]*)\" are given to create account$")
+    public void username_and_password_are_given_to_create_account(String arg1, String arg2) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        createAccount(arg1, arg2, arg2);
+    }
+
+
+    
+    
     @Then("^system will respond \"([^\"]*)\"$")
     public void system_will_respond(String pageContent) throws Throwable {
         assertTrue(driver.getPageSource().contains(pageContent));
@@ -71,12 +80,66 @@ public class Stepdefs {
         driver.quit();
     }
         
-    /* helper methods */
+    @Given("^command new user is selected$")
+    public void command_new_user_is_selected() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        driver.get(baseUrl);
+        SelectNewAccount();
+        try{ Thread.sleep(120); } catch(Exception e){}
+    }
+
+    @When("^a valid username \"([^\"]*)\" and password \"([^\"]*)\" and matching password confirmation are entered$")
+    public void a_valid_username_and_password_and_matching_password_confirmation_are_entered(String arg1, String arg2) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        try{ Thread.sleep(120); } catch(Exception e){}
+        createAccount(arg1, arg2, arg2);
+    }
+
+    @When("^username \"([^\"]*)\" and password \"([^\"]*)\" are given and non matching password confirmation are entered$")
+    public void username_and_password_are_given_and_non_matching_password_confirmation_are_entered(String arg1, String arg2) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        createAccount(arg1, arg2, arg2+"asdasd");
+    }
+
+    
+    @Then("^a new user is created$")
+    public void a_new_user_is_created() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(driver.findElements(By.id("error")).isEmpty());
+    }
+
+    @Then("^user is not created and error \"([^\"]*)\" is reported$")
+    public void user_is_not_created_and_error_is_reported(String arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        pageHasContent(arg1);
+    }
+
  
     private void pageHasContent(String content) {
         assertTrue(driver.getPageSource().contains(content));
     }
-        
+ 
+   
+    private void SelectNewAccount(){          
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
+    }
+    
+    
+    private void createAccount(String username, String password1, String password2){          
+        WebElement element = driver.findElement(By.name("username"));
+        element.sendKeys(username);
+        element = driver.findElement(By.name("password"));
+        element.sendKeys(password1);
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys(password2);
+        element = driver.findElement(By.name("signup"));  
+        element.submit();
+    }
+    
+    
+    
+    
     private void logInWith(String username, String password) {
         assertTrue(driver.getPageSource().contains("Give your credentials to login"));
         WebElement element = driver.findElement(By.name("username"));
