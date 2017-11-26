@@ -22,6 +22,7 @@ public class Kauppa {
 
     public void poistaKorista(int id) {
         Tuote t = varasto.haeTuote(id); 
+        ostoskori.poista(t);
         varasto.palautaVarastoon(t);
     }
 
@@ -36,7 +37,6 @@ public class Kauppa {
     public boolean tilimaksu(String nimi, String tiliNumero) {
         int viite = viitegeneraattori.uusi();
         int summa = ostoskori.hinta();
-        System.out.println(nimi);
         return pankki.tilisiirto(nimi, viite, tiliNumero, kaupanTili, summa);
     }
 
