@@ -50,14 +50,12 @@ public class TennisGame {
     
 
     public String getScore() {
-        String score = "";
-        int tempScore=0;
         if (m_score1==m_score2){
             return scoreToStringDraw(m_score1);
         }else if (m_score1>=4 || m_score2>=4){
             return whoIsWinning(m_score1-m_score2);
         }else{
-            score = scoreToString(m_score1);
+            String score = scoreToString(m_score1);
             score += "-"+scoreToString(m_score2);
             return score;
         }
